@@ -1,0 +1,10 @@
+venv/
+.env
+*.log
+__pycache__/
+*.pyc
+.DS_Store
+*.ova
+*.vdi
+disk_image/*.dd
+disk_image/*.raw
