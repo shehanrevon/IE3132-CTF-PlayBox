@@ -1,0 +1,13 @@
+# Stage 1 (OSINT) - OPTIONAL local viewer for the offline mock forum.
+# Players can also just unzip the CTFd download and open index.html - no server needed.
+# Only the stage owner edits this file; Kosgollage adds an `include:` line in the root compose.
+# Port 8081 chosen to avoid: 8000 (CTFd), 8080 (Stage 6 web service). Confirm with Kosgollage.
+services:
+  stage1_forum:
+    image: nginx:1.27-alpine
+    container_name: silent_ledger_stage1
+    ports:
+      - "8081:80"
+    volumes:
+      - ./dist/site:/usr/share/nginx/html:ro   # read-only: nothing a player does can alter it
+    restart: unless-stopped
