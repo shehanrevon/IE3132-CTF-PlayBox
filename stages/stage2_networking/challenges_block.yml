@@ -1,0 +1,27 @@
+# Paste into platform/seed/challenges.yml (ADD ONLY YOUR OWN BLOCK). Field names = draft; match Kosgollage's schema.
+- name: "Stage 2 - The Drop"
+  category: "Networking"
+  value: 150
+  type: standard
+  state: visible
+  description: |
+    Security captured 90 seconds of traffic from the insider's workstation (10.20.4.17)
+    on the morning of 14 March. Most of it is routine. One upload is not.
+
+    Find it, recover what was sent, and submit the reference code it contains.
+    You will need your answer from the previous case file.
+
+    Flag format: CASE{...}
+  files:
+    - stages/stage2_networking/dist/silent_ledger_capture.pcap
+  flags:
+    - type: static
+      content: "CASE{exfil_stream_confirmed_5547}"
+      data: case_insensitive
+  hints:
+    - { content: "See hints.md #1", cost: 0 }
+    - { content: "See hints.md #2", cost: 10 }
+    - { content: "See hints.md #3", cost: 15 }
+  requirements:
+    prerequisites: ["Stage 1 - The Quiet Poster"]
+  next: "Stage 3 - Web (IDOR)"
