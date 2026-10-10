@@ -1,0 +1,51 @@
+challenges:
+  - name: "Stage 1 - The Quiet Poster"
+    category: "OSINT"
+    value: 100
+    type: standard
+    state: visible
+    description: |
+      An anonymous tip says someone in Meridian Freight's Finance team is quietly
+      sitting on evidence of a hidden "silent ledger". The only trace is the
+      company's internal staff forum (offline mirror attached).
+
+      Identify the insider. Everything you need is inside the package - no internet required.
+
+      Flag format: CASE{STAFFID_HUBCODE_forumhandle}   e.g. CASE{MFC0000_XXX00_username}
+      Hub codes are written exactly as on the Locations page; the handle is lowercase.
+    files:
+      - stages/stage1_osint/dist/stage1_osint_player.zip
+    flags:
+      - type: static
+        content: "CASE{MFC2291_CMB01_larkspur}"
+        data: case_insensitive
+    hints:
+      - { content: "See hints.md #1", cost: 0 }
+      - { content: "See hints.md #2", cost: 10 }
+      - { content: "See hints.md #3", cost: 20 }
+
+  - name: "Stage 2 - The Drop"
+    category: "Networking"
+    value: 150
+    type: standard
+    state: visible
+    description: |
+      Security captured 90 seconds of traffic from the insider's workstation (10.20.4.17)
+      on the morning of 14 March. Most of it is routine. One upload is not.
+
+      Find it, recover what was sent, and submit the reference code it contains.
+      You will need your answer from the previous case file.
+
+      Flag format: CASE{...}
+    files:
+      - stages/stage2_networking/dist/silent_ledger_capture.pcap
+    flags:
+      - type: static
+        content: "CASE{exfil_stream_confirmed_5547}"
+        data: case_insensitive
+    hints:
+      - { content: "See hints.md #1", cost: 0 }
+      - { content: "See hints.md #2", cost: 15 }
+      - { content: "See hints.md #3", cost: 30 }
+    requirements:
+      prerequisites: ["Stage 1 - The Quiet Poster"]
