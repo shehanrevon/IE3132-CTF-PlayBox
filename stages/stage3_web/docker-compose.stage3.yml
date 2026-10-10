@@ -1,0 +1,25 @@
+# Stage 3 (Web/IDOR) - Meridian Freight Ledger Portal.
+# Host port 8082 CONFIRMED by Kosgollage (taken: 8000 CTFd, 8080 Stage 6, 8081 Stage 1 viewer). Confirm with Kosgollage.
+# Stateless: reset = `docker compose -f docker-compose.stage3.yml up -d --force-recreate`
+services:
+  stage3_web:
+    build: .
+    image: silent_ledger/stage3_web:1.0
+    container_name: silent_ledger_stage3
+    ports:
+      - "8082:5000"
+    environment:
+      STAGE3_FLAG: "CASE{sh4dow_batch_idor_9103}"
+      SECRET_KEY: "5a50d17156b3a106925d41fc2a1f41df016d8d556d8dc78f65c384c8430aeae2"
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request;urllib.request.urlopen('http://127.0.0.1:5000/healthz')"]
+      interval: 15s
+      timeout: 3s
+      retries: 3

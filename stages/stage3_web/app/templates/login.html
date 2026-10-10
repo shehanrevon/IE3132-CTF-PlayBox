@@ -1,0 +1,7 @@
+{% extends "base.html" %}{% block title %}Sign in{% endblock %}
+{% block body %}<div class="card" style="max-width:380px;margin:40px auto">
+<h2>Staff sign in</h2><p class="meta">Authorised Meridian Freight staff only.</p>
+{% if error %}<div class="err">{{ error }}</div>{% endif %}
+<form method="post"><label>Username</label><input name="username" autocomplete="username" required>
+<label>Password</label><input name="password" type="password" autocomplete="current-password" required>
+<button type="submit">Sign in</button></form></div>{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block title %}Statement {{ sid }}{% endblock %}
+{% block body %}<div class="card"><h2>{{ s.title }}</h2>
+<p class="meta">Statement #{{ sid }} &middot; {{ s.period }} &middot; Prepared by {{ owner.name }}, {{ owner.dept }}</p>
+<table><tr><th>Line</th><th>Amount (LKR)</th></tr>
+{% for k, v in s.lines %}<tr><td>{{ k }}</td><td>{{ v }}</td></tr>{% endfor %}</table>
+<h3>Notes</h3><p>{{ s.note }}</p>
+<h3>Attachments</h3>
+{% if files %}<ul>{% for fid, fname in files %}<li><a href="{{ url_for('download', fid=fid) }}">{{ fname }}</a></li>{% endfor %}</ul>
+{% else %}<p class="meta">None.</p>{% endif %}</div>{% endblock %}
