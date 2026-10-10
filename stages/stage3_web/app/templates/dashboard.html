@@ -1,0 +1,5 @@
+{% extends "base.html" %}{% block title %}My statements{% endblock %}
+{% block body %}<div class="card"><h2>My statements</h2>
+<table><tr><th>ID</th><th>Title</th><th>Period</th></tr>
+{% for sid, s in statements %}<tr><td>{{ sid }}</td><td><a href="{{ url_for('statement', sid=sid) }}">{{ s.title }}</a></td><td>{{ s.period }}</td></tr>
+{% else %}<tr><td colspan="3">No statements.</td></tr>{% endfor %}</table></div>{% endblock %}
