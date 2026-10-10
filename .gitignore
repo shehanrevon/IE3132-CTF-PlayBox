@@ -8,3 +8,4 @@ __pycache__/
 *.vdi
 disk_image/*.dd
 disk_image/*.raw
+stages/stage6_capstone/privesc/logchecker
