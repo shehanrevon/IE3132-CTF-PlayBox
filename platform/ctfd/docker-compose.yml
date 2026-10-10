@@ -3,7 +3,7 @@ services:
     image: ctfd/ctfd:latest
     restart: always
     ports:
-      - "8000:8000"
+      - "10.10.10.1:8000:80"
     environment:
       - UPLOAD_FOLDER=/var/uploads
       - DATABASE_URL=mysql+pymysql://ctfd:ctfd@db/ctfd
